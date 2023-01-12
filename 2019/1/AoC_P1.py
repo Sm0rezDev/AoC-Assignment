@@ -1,8 +1,8 @@
 import unittest
-import math
+from math import floor
 
 def required_fuel(_input):
-    return [math.floor(int(mass)/3)-2 for mass in _input.splitlines()]
+    return [floor(int(mass)/3)-2 for mass in _input.splitlines()]
 
 
 class TestProcessInput(unittest.TestCase):
