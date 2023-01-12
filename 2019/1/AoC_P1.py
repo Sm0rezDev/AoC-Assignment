@@ -6,7 +6,7 @@ def required_fuel(_input):
 
 
 class TestProcessInput(unittest.TestCase):
-    sample = "12\n14\n1969\n100756"
+    sample = '12\n14\n1969\n100756'
 
     def test_required_fuel(self):
         result = [2, 2, 654, 33583]
