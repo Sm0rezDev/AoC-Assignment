@@ -21,4 +21,11 @@ def fuel_need(_input):
             else:
                 totalFuel.append(_fuel_need)
     return totalFuel
-    
+
+if __name__ == '__main__':
+    with open('2019/1/input.txt') as f:
+        data = f.read()
+
+    print('Answer: ', sum(fuel_need(module_fuel(data))))
+
+# Answer:  4994898
