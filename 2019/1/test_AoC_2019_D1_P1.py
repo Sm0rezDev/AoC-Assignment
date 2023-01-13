@@ -9,7 +9,7 @@ class TestProcessInput(unittest.TestCase):
         self.assertEqual(required_fuel(self.sample), result)
 
 """
-test_required_fuel (2019.1.test_AoC_P1.TestProcessInput) ... ok
+test_required_fuel (2019.1.test_AoC_2019_D1_P1.TestProcessInput) ... ok
 
 ----------------------------------------------------------------------
 Ran 1 test in 0.000s

@@ -20,8 +20,8 @@ class TestProcessInput(unittest.TestCase):
             ])
 
 """
-test_fuel_need (2019.1.test_AoC_P2.TestProcessInput) ... ok
-test_module_fuel (2019.1.test_AoC_P2.TestProcessInput) ... ok
+test_fuel_need (2019.1.test_AoC_2019_D1_P2.TestProcessInput) ... ok
+test_module_fuel (2019.1.test_AoC_2019_D1_P2.TestProcessInput) ... ok
 
 ----------------------------------------------------------------------
 Ran 2 tests in 0.000s
