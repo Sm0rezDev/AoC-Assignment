@@ -20,4 +20,11 @@ def int_process(int_code):
 
 
 if __name__ == '__main__':
-    pass
+    with open('2019/2/input.txt', encoding='utf8') as f:
+        data = list(map(int, f.read().split(',')))
+    
+    data[1] = 12
+    data[2] = 2
+
+    print(int_process(data))
+    
