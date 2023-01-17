@@ -3,6 +3,7 @@ class int_code_interpreter:
 
     def __init__(self, mem):
         self.mem = mem
+        self.rc = 0
 
 
     @staticmethod
@@ -31,30 +32,27 @@ class int_code_interpreter:
         mem = self.mem
         idx = self._idx
         
-        i = 0
-        while True:
+        #i = 0
+        #while True:
+        for i in range(0, len(mem), 4):
             op_code, mode1, mode2, mode3 = self._parse(mem[i])
 
             if op_code == 1:
                 #int_code[int_code[i+3]] = sum(int_code[int_code[i+j]] for j in [1,2])
-                p1 = mem[idx(i+1, mode1)]
-                p2 = mem[idx(i+2, mode2)]
+                p_1 = mem[idx(i+1, mode1)]
+                p_2 = mem[idx(i+2, mode2)]
                 addr = idx(i+3, mode3)
-                mem[addr] = p1+p2
-                i+=4
+                mem[addr] = p_1+p_2
+                #i+=4 # steps forward 4 steps to next opcode.
             elif op_code == 2:
                 #int_code[int_code[i+3]] = reduce(lambda x, y: x*y, (int_code[int_code[i+j]] for j in [1,2]))
-                p1 = mem[idx(i+1, mode1)]
-                p2 = mem[idx(i+2, mode2)]
+                p_1 = mem[idx(i+1, mode1)]
+                p_2 = mem[idx(i+2, mode2)]
                 addr = idx(i+3, mode3)
-                mem[addr] = p1*p2
-                i+=4
-
-            #i+=4 # steps forward 4 steps to next opcode.
+                mem[addr] = p_1*p_2
+                #i+=4 # steps forward 4 steps to next opcode.
             if op_code == 99:
                 break # Halts when encounter opcode 99.
-        return mem
-
 
 
 if __name__ == '__main__':
@@ -65,5 +63,23 @@ if __name__ == '__main__':
     for idx, v in enumerate(last_state):
         data[idx+1] = v
     
-    icp = int_code_interpreter(data)
-    print('Answer:', icp.execute()[0])
+    icp = int_code_interpreter(data.copy())
+    icp.execute()
+    print('[Part 1] Answer:', icp.mem[0])
+
+    OUTPUT = None
+    for noun in range(100):
+        for verb in range(100):
+            icp = int_code_interpreter(data.copy())
+            mem = icp.mem
+            mem[1] = noun
+            mem[2] = verb
+            icp.execute()
+
+            if mem[0] == 19690720:
+                OUTPUT = mem[0]
+                break
+        if OUTPUT is not None:
+            break
+
+    print('[PART 2] Answer:', 100 * noun + verb)
